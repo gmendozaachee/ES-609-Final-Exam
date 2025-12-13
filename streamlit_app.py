@@ -470,20 +470,19 @@ if st.session_state.page == "summary":
 
     P_humidifier = cp.Variable(T)
     C_humidifier = cp.Variable(T)
+    
     y_humidifier = cp.Variable(T, boolean=True)
-
     z_batt = cp.Variable(T, boolean=True)
     y_batt = cp.Variable(T, boolean=True)
-
     y_oxy_off   = cp.Variable(T, boolean=True)
     y_oxy_300   = cp.Variable(T, boolean=True)
     y_oxy_500   = cp.Variable(T, boolean=True)
     y_oxy_1000  = cp.Variable(T, boolean=True)
-
     if num_sessions > 0:
         y_dialysis_start = cp.Variable(num_sessions, boolean=True)
     else:
         y_dialysis_start = cp.Variable(1, boolean=True)
+
 
     w_oxygen       = 70
     w_hemodialysis = 100
@@ -491,6 +490,17 @@ if st.session_state.page == "summary":
     w_temp         = 30
     w_base         = 10
     max_household_power = 50.0
+
+    constraints += [
+    y_humidifier >= 0, y_humidifier <= 1,
+    z_batt >= 0, z_batt <= 1,
+    y_batt >= 0, y_batt <= 1,
+    y_oxy_off >= 0, y_oxy_off <= 1,
+    y_oxy_300 >= 0, y_oxy_300 <= 1,
+    y_oxy_500 >= 0, y_oxy_500 <= 1,
+    y_oxy_1000 >= 0, y_oxy_1000 <= 1,
+    y_dialysis_start >= 0, y_dialysis_start <= 1
+]
 
     is_outage = np.isin(np.arange(T), outage_hours).astype(int)
 
@@ -726,11 +736,15 @@ if st.session_state.page == "summary":
 
 ####################################################################################################################################################################################
 
-    with st.spinner("Solving energy optimization problem…"):
-     prob = cp.Problem(objective, constraints)
-     
- #  prob.solve(solver=cp.GUROBI, verbose=True)
-    prob.solve(solver=cp.ECOS_BB, verbose=False)
+with st.spinner("Solving energy optimization problem…"):
+    prob = cp.Problem(objective, constraints)
+
+    st.write("Installed CVXPY solvers:", cp.installed_solvers())
+
+    prob.solve(solver=cp.GLPK_MI, verbose=False)
+
+st.success("Optimization completed successfully!")
+
     
 ####################################################################################################################################################################################
    
@@ -880,6 +894,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
