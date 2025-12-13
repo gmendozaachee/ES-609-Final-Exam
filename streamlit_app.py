@@ -748,16 +748,16 @@ st.success("Optimization completed successfully!")
     
 ####################################################################################################################################################################################
    
-    P_solar_combined = np.round(P_solar_to_load.value + P_batt_ch_solar.value, 2)
-    P_batt_dis_plot = np.round(P_batt_dis.value, 2)
-    P_ev_plot = np.round(P_ev_dis.value, 2)
-    P_demand = -np.round(P_total_load.value, 2)
-    P_oxygen_plot = np.round(P_oxygen.value, 2)
-    P_hemo_plot = np.round(P_hemodialysis.value, 2)
-    P_humid_plot = np.round(P_humidifier.value, 2)
-    P_base_plot = np.round(P_base_supplied.value, 2)
-    P_hp_plot = np.round(X_hp.value, 2)
-    P_batt_ch_total = np.round(P_batt_ch_solar.value + P_batt_ch_grid.value, 2)
+P_solar_combined = np.round(P_solar_to_load.value + P_batt_ch_solar.value, 2)
+P_batt_dis_plot = np.round(P_batt_dis.value, 2)
+P_ev_plot = np.round(P_ev_dis.value, 2)
+P_demand = -np.round(P_total_load.value, 2)
+P_oxygen_plot = np.round(P_oxygen.value, 2)
+P_hemo_plot = np.round(P_hemodialysis.value, 2)
+P_humid_plot = np.round(P_humidifier.value, 2)
+P_base_plot = np.round(P_base_supplied.value, 2)
+P_hp_plot = np.round(X_hp.value, 2)
+P_batt_ch_total = np.round(P_batt_ch_solar.value + P_batt_ch_grid.value, 2)
 
 
 #######################################################################################################################################################################################
@@ -894,6 +894,7 @@ st.success("Optimization completed successfully!")
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
