@@ -4,6 +4,7 @@ import numpy as np
 from dataset_loader import load_devices, load_anchorage_data
 from PIL import Image
 import os
+import cvxpy as cp
 
 
 st.set_page_config(
@@ -439,8 +440,6 @@ if st.session_state.page == "summary":
     P_hp_min = 0.0
     P_hp_max = 2.5
 ####################################################################################################################################################################################
-
-    import cvxpy as cp
 
     Tin = cp.Variable(T)
     X_hp = cp.Variable(T)
@@ -897,6 +896,7 @@ for spine in ax_inset.spines.values():
 
 st.pyplot(fig)
 st.success("Optimization completed successfully!")
+
 
 
 
