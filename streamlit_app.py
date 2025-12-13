@@ -12,24 +12,8 @@ st.set_page_config(
     layout="wide"
 )
 ##################################################################################################################################################
-
-# banner_path = r"C:\Users\gmendozaachee\OneDrive\Documents\ES A603\Final_Exam\uaa banner.png"
-
-# if os.path.exists(banner_path):
-#     banner = Image.open(banner_path)
-#     MAX_HEIGHT = 200 
-
-#     w, h = banner.size
-#     scale = MAX_HEIGHT / h
-#     banner_resized = banner.resize((int(w * scale), MAX_HEIGHT))
-
-#     st.image(banner_resized, use_container_width=False)
-# else:
-#     st.warning("⚠ UAA banner image not found.")
-
-# banner_path = r"C:\Users\gmendozaachee\OneDrive\Documents\ES A603\Final_Exam\uaa banner.png"
-banner_path = "uaa_banner.png"
-
+BASE_DIR = os.path.dirname(__file__)
+banner_path = os.path.join(BASE_DIR, "uaa banner.png")
 
 if os.path.exists(banner_path):
     banner = Image.open(banner_path)
@@ -45,7 +29,6 @@ if os.path.exists(banner_path):
 
 else:
     st.warning("⚠ UAA banner image not found.")
-
 ##################################################################################################################################################
 
 st.markdown(
@@ -897,6 +880,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
