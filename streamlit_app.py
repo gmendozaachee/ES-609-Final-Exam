@@ -761,139 +761,144 @@ P_batt_ch_total = np.round(P_batt_ch_solar.value + P_batt_ch_grid.value, 2)
 
 
 #######################################################################################################################################################################################
-    import matplotlib.pyplot as plt
-    from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+####################################################################################################
+# PLOTTING
+####################################################################################################
 
-    x = np.arange(1, 25)
-    fontsize = 12
-    linewidth = 1.5
-    markersize = 8
-    fig, ax = plt.subplots(figsize=(20, 6))
+import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
-    bar_positive = np.column_stack([
-        P_solar_combined,
-        P_batt_dis_plot,
-        P_ev_plot,
-        P_batt_ch_total
-    ])
+x = np.arange(1, 25)
+fontsize = 12
+linewidth = 1.5
+markersize = 8
+fig, ax = plt.subplots(figsize=(20, 6))
 
-    colors_pos = [
-        [0.95, 0.60, 0.10],
-        [0.10, 0.45, 0.80],
-        [0.50, 0.00, 0.50],
-        [0.55, 0.27, 0.07]
-    ]
+bar_positive = np.column_stack([
+    P_solar_combined,
+    P_batt_dis_plot,
+    P_ev_plot,
+    P_batt_ch_total
+])
 
-    labels_pos = [
-        'Solar',
-        'Battery Discharge',
-        'EV Discharge',
-        'Battery Charging'
-    ]
+colors_pos = [
+    [0.95, 0.60, 0.10],
+    [0.10, 0.45, 0.80],
+    [0.50, 0.00, 0.50],
+    [0.55, 0.27, 0.07]
+]
 
-    bottom = np.zeros_like(x, dtype=float)
-    for i in range(4):
-        ax.bar(
-            x, bar_positive[:, i],
-            bottom=bottom,
-            color=colors_pos[i],
-            edgecolor='k',
-            width=0.95,
-            label=labels_pos[i]
-        )
-        bottom += bar_positive[:, i]
+labels_pos = [
+    'Solar',
+    'Battery Discharge',
+    'EV Discharge',
+    'Battery Charging'
+]
 
-    ax.step(x, P_oxygen_plot, where='mid', color='k', linewidth=linewidth)
-    ax.plot(x, P_oxygen_plot, '^k', markersize=markersize,
-            markerfacecolor='k', label='Oxygen Concentrator')
-
-    ax.step(x, P_hemo_plot, where='mid', color='blue', linewidth=linewidth)
-    ax.plot(x, P_hemo_plot, 'db', markersize=markersize,
-            markerfacecolor='blue', label='Hemodialysis')
-
-    ax.step(x, P_base_plot, where='mid', color='red', linewidth=linewidth)
-    ax.plot(x, P_base_plot, 'or', markersize=markersize,
-            markerfacecolor='red', label='Base Load')
-
-    ax.step(x, P_hp_plot, where='mid', color='green', linewidth=linewidth)
-    ax.plot(x, P_hp_plot, 'sg', markersize=markersize,
-            markerfacecolor='green', label='Heat Pump')
-
-    color_1 = 'slategray'
-    ax.step(x, P_humid_plot, where='mid', color=color_1, linewidth=linewidth)
-    ax.plot(
-        x, P_humid_plot,
-        'pm',
-        markersize=markersize,
-        markerfacecolor=color_1,
-        markeredgecolor=color_1,
-        label='Humidifier'
+bottom = np.zeros_like(x, dtype=float)
+for i in range(4):
+    ax.bar(
+        x, bar_positive[:, i],
+        bottom=bottom,
+        color=colors_pos[i],
+        edgecolor='k',
+        width=0.95,
+        label=labels_pos[i]
     )
+    bottom += bar_positive[:, i]
 
-    ax.axhline(0, color='k', linestyle='--', linewidth=1)
-    ax.set_ylim([-.03, 3.5])
-    ax.set_xlim([0.5, 24.5])
-    ax.set_ylabel('Power (kW)', fontsize=fontsize, fontweight='bold')
+ax.step(x, P_oxygen_plot, where='mid', color='k', linewidth=linewidth)
+ax.plot(x, P_oxygen_plot, '^k', markersize=markersize,
+        markerfacecolor='k', label='Oxygen Concentrator')
 
-    ax.set_xticks(x)
-    ax.set_xticklabels(
-        ['9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm',
-         '9pm','10pm','11pm','12am','1am','2am','3am','4am','5am','6am','7am','8am'],
-        rotation=45
-    )
+ax.step(x, P_hemo_plot, where='mid', color='blue', linewidth=linewidth)
+ax.plot(x, P_hemo_plot, 'db', markersize=markersize,
+        markerfacecolor='blue', label='Hemodialysis')
 
-    ax.tick_params(labelsize=fontsize)
-    ax.tick_params(which='both', direction='in')
-    ax.grid(True, which='both', linestyle='-', color='gray', alpha=0.25)
-    ax.minorticks_on()
-    ax.set_facecolor('white')
+ax.step(x, P_base_plot, where='mid', color='red', linewidth=linewidth)
+ax.plot(x, P_base_plot, 'or', markersize=markersize,
+        markerfacecolor='red', label='Base Load')
 
-    ax.legend(
-        loc='upper right',
-        bbox_to_anchor=(0.65, 1.0),
-        fontsize=fontsize,
-        ncol=3,
-        frameon=True,
-        edgecolor='black',
-        facecolor='white'
-    )
+ax.step(x, P_hp_plot, where='mid', color='green', linewidth=linewidth)
+ax.plot(x, P_hp_plot, 'sg', markersize=markersize,
+        markerfacecolor='green', label='Heat Pump')
 
-    ax_inset = inset_axes(
-        ax,
-        width="60%",
-        height="90%",
-        bbox_to_anchor=(0.71, 0.63, 0.45, 0.35),
-        bbox_transform=ax.transAxes,
-        loc='upper left'
-    )
+color_1 = 'slategray'
+ax.step(x, P_humid_plot, where='mid', color=color_1, linewidth=linewidth)
+ax.plot(
+    x, P_humid_plot,
+    'pm',
+    markersize=markersize,
+    markerfacecolor=color_1,
+    markeredgecolor=color_1,
+    label='Humidifier'
+)
 
-    actual_Tin_F = Tin.value * 9/5 + 32
-    T_expected_F = np.full(T, Tcomfort_C) * 9/5 + 32
-    actual_Tin_F = np.round(actual_Tin_F, 2)
-    T_expected_F = np.round(T_expected_F, 2)
-    
-    hours = np.arange(1, len(actual_Tin_F) + 1)
+ax.axhline(0, color='k', linestyle='--', linewidth=1)
+ax.set_ylim([-.03, 3.5])
+ax.set_xlim([0.5, 24.5])
+ax.set_ylabel('Power (kW)', fontsize=fontsize, fontweight='bold')
 
-    ax_inset.step(hours, actual_Tin_F, where='post',
-                  color='blue', linewidth=1.8)
-    ax_inset.step(hours, T_expected_F, where='post',
-                  color='orange', linewidth=1.8, linestyle='--')
+ax.set_xticks(x)
+ax.set_xticklabels(
+    ['9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm',
+     '9pm','10pm','11pm','12am','1am','2am','3am','4am','5am','6am','7am','8am'],
+    rotation=45
+)
 
-    ax_inset.set_title("Indoor Temperature", fontsize=fontsize, pad=2)
+ax.tick_params(labelsize=fontsize)
+ax.tick_params(which='both', direction='in')
+ax.grid(True, which='both', linestyle='-', color='gray', alpha=0.25)
+ax.minorticks_on()
+ax.set_facecolor('white')
 
-    tick_positions = [1, 4, 7, 10, 13, 16, 19, 22]
-    tick_labels    = ['9am','12pm','3pm','6pm','9pm','12am','3am','6am']
+ax.legend(
+    loc='upper right',
+    bbox_to_anchor=(0.65, 1.0),
+    fontsize=fontsize,
+    ncol=3,
+    frameon=True,
+    edgecolor='black',
+    facecolor='white'
+)
 
-    ax_inset.set_xticks(tick_positions)
-    ax_inset.set_xticklabels(tick_labels, fontsize=10)
-    ax_inset.set_ylabel("°F", fontsize=fontsize)
+ax_inset = inset_axes(
+    ax,
+    width="60%",
+    height="90%",
+    bbox_to_anchor=(0.71, 0.63, 0.45, 0.35),
+    bbox_transform=ax.transAxes,
+    loc='upper left'
+)
 
-    for spine in ax_inset.spines.values():
-        spine.set_visible(True)
+actual_Tin_F = Tin.value * 9/5 + 32
+T_expected_F = np.full(T, Tcomfort_C) * 9/5 + 32
+actual_Tin_F = np.round(actual_Tin_F, 2)
+T_expected_F = np.round(T_expected_F, 2)
 
-    # st.pyplot(fig, use_container_width=True)
-    st.pyplot(fig)
-    st.success("Optimization completed successfully!")
+hours = np.arange(1, len(actual_Tin_F) + 1)
+
+ax_inset.step(hours, actual_Tin_F, where='post',
+              color='blue', linewidth=1.8)
+ax_inset.step(hours, T_expected_F, where='post',
+              color='orange', linewidth=1.8, linestyle='--')
+
+ax_inset.set_title("Indoor Temperature", fontsize=fontsize, pad=2)
+
+tick_positions = [1, 4, 7, 10, 13, 16, 19, 22]
+tick_labels    = ['9am','12pm','3pm','6pm','9pm','12am','3am','6am']
+
+ax_inset.set_xticks(tick_positions)
+ax_inset.set_xticklabels(tick_labels, fontsize=10)
+ax_inset.set_ylabel("°F", fontsize=fontsize)
+
+for spine in ax_inset.spines.values():
+    spine.set_visible(True)
+
+st.pyplot(fig)
+st.success("Optimization completed successfully!")
+
+
 
 
 
