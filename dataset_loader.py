@@ -1,6 +1,11 @@
+import os
 import pandas as pd
-DEVICE_DATA_PATH = r"C:\Users\gmendozaachee\OneDrive\Documents\ES A603\4_Data\Home Use Medical Devices Condensed.xlsx"
-ANCHORAGE_DATA_PATH = r"C:\Users\gmendozaachee\Documents\cvx\Thesis\Medical Loads Project\4_Data\Anchorage_Complied_Data.xlsx"
+
+BASE_DIR = os.path.dirname(__file__)
+
+DEVICE_DATA_PATH = os.path.join(BASE_DIR, "Home Use Medical Devices Condensed.xlsx")
+ANCHORAGE_DATA_PATH = os.path.join(BASE_DIR, "Anchorage_Compiled_Data.xlsx")
+
 
 def load_devices():
     df = pd.read_excel(DEVICE_DATA_PATH, engine="openpyxl")
@@ -31,5 +36,6 @@ def load_anchorage_data(start_time=None, end_time=None):
     solar_kw    = df_24['AC System Output (W)'].values / 1000.0
     timestamps  = df_24['Timestamp'].values
     return df_24, temperature, solar_kw, timestamps
+
 
 
