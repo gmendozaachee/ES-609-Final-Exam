@@ -8,17 +8,7 @@ import cvxpy as cp
 import streamlit as st
 ##################################################################################################################################################
 
-installed = cp.installed_solvers()
-
-if "GUROBI" in installed:
-    solver = cp.GUROBI
-elif "ECOS_BB" in installed:
-    solver = cp.ECOS_BB
-else:
-    st.error("No MILP solver available.")
-    st.stop()
-
-prob.solve(solver=solver, verbose=False)
+st.write("Installed solvers:", cp.installed_solvers())
 ##################################################################################################################################################
 
 
