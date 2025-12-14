@@ -4,12 +4,21 @@ import numpy as np
 from dataset_loader import load_devices, load_anchorage_data
 from PIL import Image
 import os
-##################################################################################################################################################
-
 import cvxpy as cp
 import streamlit as st
+##################################################################################################################################################
 
-st.write("Installed solvers:", cp.installed_solvers())
+installed = cp.installed_solvers()
+
+if "GUROBI" in installed:
+    solver = cp.GUROBI
+elif "ECOS_BB" in installed:
+    solver = cp.ECOS_BB
+else:
+    st.error("No MILP solver available.")
+    st.stop()
+
+prob.solve(solver=solver, verbose=False)
 ##################################################################################################################################################
 
 
@@ -906,6 +915,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
