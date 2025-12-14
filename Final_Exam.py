@@ -4,6 +4,14 @@ import numpy as np
 from dataset_loader import load_devices, load_anchorage_data
 from PIL import Image
 import os
+##################################################################################################################################################
+
+import cvxpy as cp
+import streamlit as st
+
+st.write("Installed solvers:", cp.installed_solvers())
+##################################################################################################################################################
+
 
 
 st.set_page_config(
@@ -898,6 +906,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
