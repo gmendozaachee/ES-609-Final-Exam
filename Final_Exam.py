@@ -8,7 +8,6 @@ import cvxpy as cp
 import streamlit as st
 ##################################################################################################################################################
 
-st.write("Installed solvers:", cp.installed_solvers())
 ##################################################################################################################################################
 
 
@@ -905,6 +904,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
