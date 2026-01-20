@@ -280,9 +280,9 @@ st.session_state.bess_init = st.slider(
         
 ###################################################################################################################################################################################################
 
-        st.markdown("</div>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
 
-    st.write("")
+st.write("")
 
     if st.button("Continue → Device Selection"):
         st.session_state.page = "devices"
@@ -932,6 +932,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
