@@ -213,8 +213,10 @@ if st.session_state.page == "inputs":
         # )
         
         st.session_state.selected_date = pd.to_datetime("2024-01-01").date()
+        
+##################################################################################################################################################
 
-        st.session_state.num_devices = st.number_input(
+        st.session_state.num_devices = st.slider(
             "How many devices?",
             min_value=1,
             max_value=3,
@@ -245,7 +247,7 @@ if st.session_state.page == "inputs":
         st.session_state.bess_init = st.number_input(
             "BESS Initial Energy (kWh):", value=st.session_state.bess_init
         )
-
+##################################################################################################################################################
         st.markdown("</div>", unsafe_allow_html=True)
 
     st.write("")
@@ -898,6 +900,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
