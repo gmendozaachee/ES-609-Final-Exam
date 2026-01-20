@@ -216,7 +216,7 @@ if st.session_state.page == "inputs":
         
 ##################################################################################################################################################
 
-        st.session_state.num_devices = st.slider(
+        st.session_state.num_devices = st.number_input(
             "How many devices?",
             min_value=1,
             max_value=3,
@@ -224,9 +224,16 @@ if st.session_state.page == "inputs":
             step=1,
         )
 
-        st.session_state.min_temp = st.number_input(
-            "Minimum Temperature (°F):", value=st.session_state.min_temp
-        )
+        # st.session_state.min_temp = st.number_input(
+        #     "Minimum Temperature (°F):", value=st.session_state.min_temp
+        # )
+        st.session_state.min_temp = st.slider(
+           "Minimum Temperature (°F):",
+            min_value=60,
+            max_value=75,
+            value=int(st.session_state.min_temp),
+            step=1)
+
 
         st.session_state.max_temp = st.number_input(
             "Maximum Temperature (°F):", value=st.session_state.max_temp
@@ -900,6 +907,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
