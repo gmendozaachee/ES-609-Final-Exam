@@ -28,7 +28,7 @@ st.set_page_config(
 #     st.warning("⚠ UAA banner image not found.")
 
 # banner_path = r"C:\Users\gmendozaachee\OneDrive\Documents\ES A603\Final_Exam\uaa banner.png"
-banner_path = "uaa_banner.png"
+banner_path = "uaa banner.png"
 
 
 if os.path.exists(banner_path):
@@ -898,5 +898,6 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
