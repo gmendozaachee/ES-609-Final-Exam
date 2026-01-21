@@ -13,36 +13,36 @@ st.set_page_config(
 )
 ##################################################################################################################################################
 
-UAA_GREEN = "#00583d"
-UAA_GOLD  = "#ffc425"
+# UAA_GREEN = "#00583d"
+# UAA_GOLD  = "#ffc425"
 
-st.markdown(
-    f"""
-    <style>
-    /* Streamlit theme override */
-    :root {{
-        --primary-color: {UAA_GREEN};
-    }}
+# st.markdown(
+#     f"""
+#     <style>
+#     /* Streamlit theme override */
+#     :root {{
+#         --primary-color: {UAA_GREEN};
+#     }}
 
-    /* Slider inactive track */
-    div[data-baseweb="slider"] > div > div {{
-        background-color: {UAA_GREEN} !important;
-    }}
+#     /* Slider inactive track */
+#     div[data-baseweb="slider"] > div > div {{
+#         background-color: {UAA_GREEN} !important;
+#     }}
 
-    /* Slider active (filled) track */
-    div[data-baseweb="slider"] div[role="slider"] + div {{
-        background-color: {UAA_GREEN} !important;
-    }}
+#     /* Slider active (filled) track */
+#     div[data-baseweb="slider"] div[role="slider"] + div {{
+#         background-color: {UAA_GREEN} !important;
+#     }}
 
-    /* Slider thumb */
-    div[data-baseweb="slider"] span {{
-        background-color: {UAA_GREEN} !important;
-        border-color: {UAA_GREEN} !important;
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+#     /* Slider thumb */
+#     div[data-baseweb="slider"] span {{
+#         background-color: {UAA_GREEN} !important;
+#         border-color: {UAA_GREEN} !important;
+#     }}
+#     </style>
+#     """,
+#     unsafe_allow_html=True
+# )
 
 ##################################################################################################################################################
 
@@ -949,6 +949,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
