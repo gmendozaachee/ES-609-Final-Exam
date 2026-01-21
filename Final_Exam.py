@@ -16,23 +16,47 @@ st.set_page_config(
 UAA_GREEN = "#00583d"
 UAA_GOLD  = "#ffc425"
 
+# st.markdown(
+#     f"""
+#     <style>
+#     /* Slider track */
+#     div[data-baseweb="slider"] > div > div {{
+#         background: {UAA_GREEN};
+#     }}
+
+#     /* Slider handle */
+#     div[data-baseweb="slider"] span {{
+#         background: {UAA_GREEN};
+#         border-color: {UAA_GREEN};
+#     }}
+#     </style>
+#     """,
+#     unsafe_allow_html=True
+# )
+
 st.markdown(
     f"""
     <style>
-    /* Slider track */
+    /* Slider inactive track */
     div[data-baseweb="slider"] > div > div {{
-        background: {UAA_GREEN};
+        background-color: {UAA_GREEN} !important;
     }}
 
-    /* Slider handle */
+    /* Slider active (filled) track */
+    div[data-baseweb="slider"] div[role="slider"] + div {{
+        background-color: {UAA_GREEN} !important;
+    }}
+
+    /* Slider thumb */
     div[data-baseweb="slider"] span {{
-        background: {UAA_GREEN};
-        border-color: {UAA_GREEN};
+        background-color: {UAA_GREEN} !important;
+        border-color: {UAA_GREEN} !important;
     }}
     </style>
     """,
     unsafe_allow_html=True
 )
+
 ##################################################################################################################################################
 
 # banner_path = r"C:\Users\gmendozaachee\OneDrive\Documents\ES A603\Final_Exam\uaa banner.png"
@@ -938,6 +962,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
