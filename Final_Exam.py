@@ -13,8 +13,8 @@ st.set_page_config(
 )
 ##################################################################################################################################################
 
-# UAA_GREEN = "#00583d"
-# UAA_GOLD  = "#ffc425"
+UAA_GREEN = "#00583d"
+UAA_GOLD  = "#ffc425"
 
 # st.markdown(
 #     f"""
@@ -949,6 +949,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
