@@ -12,6 +12,24 @@ st.set_page_config(
     layout="wide"
 )
 ##################################################################################################################################################
+st.markdown(
+    f"""
+    <style>
+    /* Slider track */
+    div[data-baseweb="slider"] > div > div {{
+        background: {UAA_GREEN};
+    }}
+
+    /* Slider handle */
+    div[data-baseweb="slider"] span {{
+        background: {UAA_GREEN};
+        border-color: {UAA_GREEN};
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+##################################################################################################################################################
 
 # banner_path = r"C:\Users\gmendozaachee\OneDrive\Documents\ES A603\Final_Exam\uaa banner.png"
 
@@ -919,6 +937,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
