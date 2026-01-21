@@ -16,27 +16,14 @@ st.set_page_config(
 UAA_GREEN = "#00583d"
 UAA_GOLD  = "#ffc425"
 
-# st.markdown(
-#     f"""
-#     <style>
-#     /* Slider track */
-#     div[data-baseweb="slider"] > div > div {{
-#         background: {UAA_GREEN};
-#     }}
-
-#     /* Slider handle */
-#     div[data-baseweb="slider"] span {{
-#         background: {UAA_GREEN};
-#         border-color: {UAA_GREEN};
-#     }}
-#     </style>
-#     """,
-#     unsafe_allow_html=True
-# )
-
 st.markdown(
     f"""
     <style>
+    /* Streamlit theme override */
+    :root {{
+        --primary-color: {UAA_GREEN};
+    }}
+
     /* Slider inactive track */
     div[data-baseweb="slider"] > div > div {{
         background-color: {UAA_GREEN} !important;
@@ -962,6 +949,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
