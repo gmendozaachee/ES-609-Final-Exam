@@ -227,33 +227,69 @@ if st.session_state.page == "inputs":
         # st.session_state.min_temp = st.number_input(
         #     "Minimum Temperature (°F):", value=st.session_state.min_temp
         # )
+        
         st.session_state.min_temp = st.slider(
            "Minimum Temperature (°F):",
             min_value=60,
-            max_value=75,
+            max_value=67,
             value=int(st.session_state.min_temp),
             step=1)
+        
+        # st.session_state.max_temp = st.number_input(
+        #     "Maximum Temperature (°F):", value=st.session_state.max_temp
+        # )
+        
+        st.session_state.max_temp = st.slider(
+           "Maximum Temperature (°F):",
+            min_value=69,
+            max_value=75,
+            value=int(st.session_state.max_temp),
+            step=1)
 
+        # st.session_state.batt_cap = st.number_input(
+        #     "Battery Capacity (kWh):", value=st.session_state.batt_cap
+        # )
 
-        st.session_state.max_temp = st.number_input(
-            "Maximum Temperature (°F):", value=st.session_state.max_temp
-        )
+        # st.session_state.ev_cap = st.number_input(
+        #     "EV Capacity (kWh):", value=st.session_state.ev_cap
+        # )
 
-        st.session_state.batt_cap = st.number_input(
-            "Battery Capacity (kWh):", value=st.session_state.batt_cap
-        )
+        # st.session_state.ev_init = st.number_input(
+        #     "EV Initial Energy (kWh):", value=st.session_state.ev_init
+        # )
 
-        st.session_state.ev_cap = st.number_input(
-            "EV Capacity (kWh):", value=st.session_state.ev_cap
-        )
+        # st.session_state.bess_init = st.number_input(
+        #     "BESS Initial Energy (kWh):", value=st.session_state.bess_init
+        # )
 
-        st.session_state.ev_init = st.number_input(
-            "EV Initial Energy (kWh):", value=st.session_state.ev_init
-        )
+        st.session_state.batt_cap = st.slider(
+           "Battery Capacity (kWh):",
+            min_value=5.0,
+            max_value=30.0,
+            value=st.session_state.batt_cap,
+            step=0.5)
 
-        st.session_state.bess_init = st.number_input(
-            "BESS Initial Energy (kWh):", value=st.session_state.bess_init
-        )
+       st.session_state.ev_cap = st.slider(
+          "EV Capacity (kWh):",
+           min_value=20.0,
+           max_value=120.0,
+           value=st.session_state.ev_cap,
+           step=1.0)
+
+      st.session_state.ev_init = st.slider(
+         "EV Initial Energy (kWh):",
+          min_value=0.0,
+          max_value=st.session_state.ev_cap,
+          value=st.session_state.ev_init,
+          step=1.0)
+
+      st.session_state.bess_init = st.slider(
+         "BESS Initial Energy (kWh):",
+          min_value=0.0,
+          max_value=st.session_state.batt_cap,
+          value=st.session_state.bess_init,
+          step=0.5)
+
 ##################################################################################################################################################
         st.markdown("</div>", unsafe_allow_html=True)
 
@@ -907,6 +943,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
