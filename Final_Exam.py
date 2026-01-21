@@ -12,6 +12,10 @@ st.set_page_config(
     layout="wide"
 )
 ##################################################################################################################################################
+
+UAA_GREEN = "#00583d"
+UAA_GOLD  = "#ffc425"
+
 st.markdown(
     f"""
     <style>
@@ -88,9 +92,6 @@ hour_labels = [
     "1 AM", "2 AM", "3 AM", "4 AM",
     "5 AM", "6 AM", "7 AM", "8 AM"
 ]
-
-UAA_GREEN = "#00583d"
-UAA_GOLD  = "#ffc425"
 
 ##################################################################################################################################################
 
@@ -937,6 +938,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
