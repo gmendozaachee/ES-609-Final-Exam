@@ -46,6 +46,18 @@ UAA_GOLD  = "#ffc425"
 
 ##################################################################################################################################################
 
+st.markdown(
+    """
+    **UAA Energy Assistant** is an interactive decision-support tool for evaluating
+    smart home energy operation and resilience. The app allows users to configure
+    household devices, thermal comfort bounds, battery and EV storage states, and
+    medical load schedules, then solves an optimization problem to assess feasibility
+    and trade-offs over a 24-hour horizon.
+    """
+)
+
+##################################################################################################################################################
+
 # banner_path = r"C:\Users\gmendozaachee\OneDrive\Documents\ES A603\Final_Exam\uaa banner.png"
 
 # if os.path.exists(banner_path):
@@ -949,6 +961,7 @@ if st.session_state.page == "summary":
     # st.pyplot(fig, use_container_width=True)
     st.pyplot(fig)
     st.success("Optimization completed successfully!")
+
 
 
 
